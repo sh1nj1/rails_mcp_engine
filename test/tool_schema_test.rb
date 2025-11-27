@@ -46,6 +46,28 @@ class ToolSchemaTest < Minitest::Test
     assert_equal 'hi hi', mcp_result
   end
 
+  def test_fast_mcp_builder_handles_nested_object_params
+    params_ast = [
+      {
+        name: :config,
+        required: true,
+        type: :object,
+        children: [
+          { name: :token, required: true, type: :string },
+          { name: :retries, required: false, type: :integer }
+        ]
+      }
+    ]
+
+    arguments_proc = ToolSchema::FastMcpBuilder.arguments_block(params_ast)
+
+    assert_silent do
+      Class.new(ApplicationTool) do
+        arguments(&arguments_proc)
+      end
+    end
+  end
+
   private
 
   def build_echo_service

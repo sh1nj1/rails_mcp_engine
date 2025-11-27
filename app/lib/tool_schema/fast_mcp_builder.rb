@@ -23,8 +23,9 @@ module ToolSchema
       case param[:type]
       when :object
         wrapper.hash do
+          nested_ctx = wrapper.respond_to?(:required) ? wrapper : ctx
           (param[:children] || []).each do |child|
-            FastMcpBuilder.build_param(self, child)
+            FastMcpBuilder.build_param(nested_ctx, child)
           end
         end
       when :array
@@ -33,8 +34,9 @@ module ToolSchema
           wrapper.array(scalar_symbol(item[:type]))
         elsif item&.dig(:type) == :object
           wrapper.array(:hash) do
+            nested_ctx = wrapper.respond_to?(:required) ? wrapper : ctx
             (item[:children] || []).each do |child|
-              FastMcpBuilder.build_param(self, child)
+              FastMcpBuilder.build_param(nested_ctx, child)
             end
           end
         else
