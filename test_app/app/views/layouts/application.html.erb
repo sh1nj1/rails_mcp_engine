@@ -12,6 +12,29 @@
       .actions { margin-top: 0.75rem; }
       pre { background: #1f2937; color: #f9fafb; padding: 0.75rem; border-radius: 8px; overflow: auto; }
       .pill { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 999px; background: #eef2ff; color: #3730a3; font-size: 0.9rem; margin-right: 0.35rem; }
+      
+      /* Tool list styles */
+      .tool-list { list-style: none; padding: 0; }
+      .tool-item { margin-bottom: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; background: white; overflow: hidden; }
+      .tool-header { padding: 0.75rem 1rem; cursor: pointer; display: flex; align-items: center; transition: background 0.2s; }
+      .tool-header:hover { background: #f9fafb; }
+      .tool-header strong { flex: 1; margin-left: 0.5rem; }
+      .expand-icon { color: #6b7280; font-size: 0.8rem; margin-left: 0.5rem; }
+      .tool-details { padding: 0 1rem 1rem 1rem; background: #fafafa; border-top: 1px solid #e5e7eb; }
+      .detail-section { margin-top: 1rem; }
+      .detail-section h4 { margin: 0 0 0.5rem 0; color: #374151; font-size: 0.95rem; }
+      .no-params { color: #6b7280; font-style: italic; margin: 0; }
+      
+      /* Parameter table styles */
+      .params-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+      .params-table th { text-align: left; padding: 0.5rem; background: #f3f4f6; border-bottom: 2px solid #d1d5db; font-weight: 600; color: #374151; }
+      .params-table td { padding: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+      .params-table code { background: #f3f4f6; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+      .type-badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; background: #dbeafe; color: #1e40af; font-size: 0.8rem; font-weight: 500; }
+      .enum-row td { background: #fffbeb; font-size: 0.85rem; padding: 0.4rem 0.5rem; }
+      .children-row td { background: #f0fdf4; font-size: 0.85rem; padding: 0.5rem; }
+      .nested-params { margin: 0.5rem 0 0 0; padding-left: 1.5rem; }
+      .nested-params li { margin-bottom: 0.25rem; }
     </style>
   </head>
   <body>
