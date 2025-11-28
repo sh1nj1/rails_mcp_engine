@@ -24,7 +24,7 @@ bundle exec rails server -p 4000
 Then open http://localhost:4000 to access the manual page.
 
 ## Using the manual page
-1. **Register a tool**: Paste a Ruby class that extends `ToolMeta` and includes a Sorbet signature for its entrypoint. The app will `class_eval` the source and invoke `Tools::MetaToolService` to register both RubyLLM and FastMCP wrappers.
+1. **Register a tool**: Paste a Ruby class that extends `ToolMeta` and includes a Sorbet signature for its entrypoint. The app will `class_eval` the source and invoke `Tools::MetaToolService#register_tool` to register both RubyLLM and FastMCP wrappers.
 2. **Run a tool**: Select a registered tool and provide JSON arguments. The request is sent through the generated `RubyLLM::Tool` wrapper so you can inspect end-to-end execution.
 3. **Inspect registered tools**: The page lists registered tool names, descriptions, and parameter names from the engine schema builder.
 

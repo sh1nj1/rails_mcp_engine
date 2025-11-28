@@ -59,12 +59,13 @@ On boot, the engine generates:
 
 `Tools::MetaToolService` is included by default to explore and execute registered tools at runtime. It exposes a single `action` argument with supporting keywords:
 
-- `register`: `class_name` required (e.g., `Tools::BookMeetingService`) to dynamically add a tool and build both wrappers.
 - `list`: return full tool details (name, description, params, return type).
 - `list_summary`: return only names and descriptions.
 - `search`: provide `query` to fuzzy-match name/description.
 - `get`: provide `tool_name` to fetch a full schema payload.
 - `run`: provide `tool_name` and `arguments` to invoke a tool through its service class.
+
+> **Note:** The `register` action is not available via the tool interface for security reasons. Developers can manually register tools using `Tools::MetaToolService.new.register_tool("ClassName")` in their code.
 
 Example invocation from a console:
 

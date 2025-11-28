@@ -13,6 +13,12 @@ module RailsMcpEngine
       end
     end
 
+    # Add engine directories to LOAD_PATH so internal requires work
+    config.before_configuration do
+      $LOAD_PATH.unshift root.join('app/lib').to_s
+      $LOAD_PATH.unshift root.join('app/services').to_s
+    end
+
     # Trigger tool generation on boot and reload
     config.to_prepare do
       # Ensure engine files are loaded

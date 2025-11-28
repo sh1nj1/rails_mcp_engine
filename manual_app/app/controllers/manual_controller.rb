@@ -54,7 +54,7 @@ class ManualController < ApplicationController
 
   def register_source(source, class_name)
     Object.class_eval(source)
-    Tools::MetaToolService.new.call(action: 'register', class_name: class_name)
+    Tools::MetaToolService.new.register_tool(class_name)
   rescue StandardError => e
     { error: e.message }
   end

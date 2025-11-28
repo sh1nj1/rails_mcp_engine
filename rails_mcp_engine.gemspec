@@ -1,4 +1,6 @@
-$:.push File.expand_path('lib', __dir__)
+# frozen_string_literal: true
+
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 
 # Maintain your gem's version:
 require 'rails_mcp_engine/version'
@@ -17,9 +19,10 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes, delete this section.
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['rubygems_mfa_required'] = 'true'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
-      'public gem pushes.'
+          'public gem pushes.'
   end
 
   spec.required_ruby_version = '>= 3.2.0'
