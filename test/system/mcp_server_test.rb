@@ -35,7 +35,7 @@ class McpServerTest < ActionDispatch::SystemTestCase
       while (line = io.gets)
         puts "Curl output: #{line.inspect}"
         endpoint_received = true if line.include?('event: endpoint')
-        next unless line.include?('tools/list') || line.include?('MetaTool')
+        next unless line.include?('meta_tool')
 
         tools_received = true
         Process.kill('TERM', io.pid)

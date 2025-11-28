@@ -23,6 +23,7 @@ class MetaToolServiceTest < Minitest::Test
 
     assert_equal 'Say a friendly hello', ruby_tool.description(nil)
     assert_equal 'Say a friendly hello', fast_tool.description(nil)
+    assert_equal 'sample', fast_tool.tool_name
   end
 
   def test_lists_and_searches_tools

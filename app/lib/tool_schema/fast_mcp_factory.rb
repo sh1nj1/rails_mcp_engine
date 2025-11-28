@@ -16,6 +16,7 @@ module ToolSchema
 
       klass = Class.new(ApplicationTool) do
         description(schema[:description])
+        tool_name(schema[:name])
         arguments(&FastMcpBuilder.arguments_block(schema[:params]))
 
         define_method(:call) do |**kwargs|
