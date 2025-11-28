@@ -9,6 +9,12 @@ require 'tool_meta'
 require 'tool_schema/builder'
 require 'tool_schema/ruby_llm_factory'
 require 'tool_schema/fast_mcp_factory'
+require 'ruby_llm'
+require 'fast_mcp'
+
+# Define the base class expected by the engine, inheriting from the real gem
+class ApplicationTool < FastMcp::Tool
+end
 
 module RubyLLM
   class Tool
