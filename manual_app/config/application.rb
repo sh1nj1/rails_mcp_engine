@@ -15,12 +15,7 @@ module ManualApp
 
     config.autoload_paths << Rails.root.join('lib')
 
-    engine_root = Pathname.new(__dir__).join('..', '..').expand_path
-    config.autoload_paths << engine_root.join('app/lib')
-    config.autoload_paths << engine_root.join('app/services')
-    config.eager_load_paths << engine_root.join('app/lib')
-    config.eager_load_paths << engine_root.join('app/services')
-
     config.action_controller.include_all_helpers = false
+    config.hosts << 'uncommon-kangaroo-randomly.ngrok-free.app'
   end
 end

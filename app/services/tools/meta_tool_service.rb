@@ -14,9 +14,8 @@ module Tools
 
     tool_name 'meta_tool'
     tool_description 'Inspect and run registered tools via a single meta interface.'
-    tool_param :action, description: 'Operation to perform', enum: %w[register search list list_summary get run]
+    tool_param :action, description: 'Operation to perform', enum: %w[search list list_summary get run]
     tool_param :tool_name, description: 'Tool name to target (for get/run)', required: false
-    tool_param :class_name, description: 'Fully qualified Ruby service class to register', required: false
     tool_param :query, description: 'Search string to match against tool names/descriptions', required: false
     tool_param :arguments, description: 'Arguments to pass when running a tool', required: false
 
@@ -24,15 +23,12 @@ module Tools
       params(
         action: String,
         tool_name: T.nilable(String),
-        class_name: T.nilable(String),
         query: T.nilable(String),
         arguments: T.nilable(T::Hash[T.untyped, T.untyped])
       ).returns(T::Hash[Symbol, T.untyped])
     end
-    def call(action:, tool_name: nil, class_name: nil, query: nil, arguments: nil)
+    def call(action:, tool_name: nil, query: nil, arguments: nil)
       case action
-      when 'register'
-        register_tool(class_name)
       when 'search'
         search_tools(query)
       when 'list'
@@ -47,8 +43,6 @@ module Tools
         { error: "Unknown action: #{action}" }
       end
     end
-
-    private
 
     sig { params(class_name: T.nilable(String)).returns(T::Hash[Symbol, T.untyped]) }
     def register_tool(class_name)
@@ -68,6 +62,8 @@ module Tools
     rescue ToolMeta::MissingSignatureError => e
       { error: e.message }
     end
+
+    private
 
     sig { params(query: T.nilable(String)).returns(T::Hash[Symbol, T.untyped]) }
     def search_tools(query)

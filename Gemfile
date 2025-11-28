@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'sorbet-runtime'
-gem 'minitest'
+# Specify your gem's dependencies in rails_mcp_engine.gemspec
+gemspec
 
-group :development do
+gem 'minitest'
+gem 'sorbet-runtime'
+
+group :development, :test do
+  gem 'capybara'
+  gem 'puma'
   gem 'rubocop', require: false
+  gem 'selenium-webdriver'
 end
