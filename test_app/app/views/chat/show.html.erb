@@ -32,8 +32,11 @@
 
   <div class="chat-input-container">
     <textarea id="chat-input" placeholder="Type your message..." rows="3"></textarea>
-    <button id="send-button" onclick="sendMessage()">Send</button>
+    <div class="button-row">
+      <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
   </div>
+
 </div>
 
 <script>
@@ -339,18 +342,27 @@ function addToolResultToUI(toolResult) {
   border-top: 1px solid #e5e7eb;
   background: #f9fafb;
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
   border-radius: 0 0 12px 12px;
 }
 
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+
 #chat-input {
-  flex: 1;
+  width: 100%;
   padding: 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-family: inherit;
   font-size: 0.95rem;
   resize: none;
+  box-sizing: border-box;
 }
 
 #chat-input:focus {
