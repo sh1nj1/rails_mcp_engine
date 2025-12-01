@@ -61,6 +61,8 @@ module Tools
       { status: 'registered', tool: summary_payload(schema) }
     rescue ToolMeta::MissingSignatureError => e
       { error: e.message }
+    rescue NameError => e
+      { error: "Could not find #{class_name}: #{e.message}" }
     end
 
     private
