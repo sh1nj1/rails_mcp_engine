@@ -96,17 +96,23 @@ After checking out the repo, run `bundle install` to install dependencies. Then,
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-### Manual Playground
+### Playground & Chat
 
-The repository includes a minimal Rails app under `test_app/` for quick manual validation.
+The engine includes a built-in playground and chat interface for testing your tools.
 
-```bash
-cd test_app
-bundle install
-bundle exec rails server -p 4000
-```
+1.  **Mount the engine**: Ensure the engine is mounted in your `config/routes.rb` (e.g., `mount RailsMcpEngine::Engine => '/rails_mcp_engine'`).
+2.  **Access the Playground**: Navigate to `/rails_mcp_engine/playground` to register and test tools individually.
+3.  **Access the Chat**: Navigate to `/rails_mcp_engine/chat` to test tools within a conversational interface using OpenAI models.
 
-See [`test_app/README.md`](test_app/README.md) for more details.
+The playground allows you to:
+- Register tool services dynamically by pasting Ruby code.
+- Run registered tools with JSON arguments.
+- View tool schemas and details.
+
+The chat interface allows you to:
+- Chat with OpenAI models (e.g., gpt-4o).
+- Automatically invoke registered tools during the conversation.
+- View tool calls and results within the chat history.
 
 ## License
 
