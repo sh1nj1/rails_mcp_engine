@@ -2,6 +2,15 @@
 
 Rails MCP Engine provides a unified tool-definition pipeline for Rails 8 applications. Service classes declare Sorbet-typed signatures and metadata once, and the engine auto-generates both RubyLLM and FastMCP tool classes at boot.
 
+## Core Dependencies
+
+This engine is built on top of these powerful libraries:
+
+- **[RubyLLM](https://github.com/crmne/ruby_llm)**: For generating LLM-compatible tool definitions.
+- **[FastMCP](https://github.com/yjacquin/fast-mcp)**: For creating Model Context Protocol (MCP) servers.
+- **[Sorbet](https://github.com/sorbet/sorbet)**: For static type checking and signature definitions.
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
