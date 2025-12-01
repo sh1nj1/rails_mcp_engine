@@ -46,7 +46,7 @@
 let conversationHistory = [];
 
 // Load conversation history from localStorage on page load
-document.addEventListener('DOMContentLoaded', () => {
+function initializeChat() {
   // Restore conversation history
   const savedHistory = localStorage.getItem('chat_conversation_history');
   if (savedHistory) {
@@ -78,15 +78,35 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('chat_selected_model', e.target.value);
     });
   }
+}
 
-  // Send on Enter (Shift+Enter for new line)
-  document.getElementById('chat-input').addEventListener('keydown', (e) => {
+document.addEventListener('DOMContentLoaded', initializeChat);
+
+  function setupChatInput() {
+    const chatInput = document.getElementById('chat-input');
+    if (!chatInput) return;
+
+    // Idempotent attachment
+    if (chatInput.dataset.listenerAttached === 'true') return;
+
+    chatInput.addEventListener('keydown', handleChatInputKeydown);
+    chatInput.dataset.listenerAttached = 'true';
+  }
+
+  function handleChatInputKeydown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
+      if (e.isComposing) return;
       e.preventDefault();
       sendMessage();
     }
-  });
-});
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupChatInput);
+  } else {
+    setupChatInput();
+  }
 
 function sendMessage() {
   const input = document.getElementById('chat-input');
