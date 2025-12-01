@@ -102,6 +102,39 @@ class MetaToolServiceTest < Minitest::Test
     assert after_called, 'After hook should be called for RubyLLM tool'
   end
 
+  def test_ruby_llm_tools_returns_correct_tool_classes
+    # Register a tool first
+    meta_service.register_tool('Tools::SampleService')
+
+    tools = Tools::MetaToolService.ruby_llm_tools(['sample'])
+    assert_equal 1, tools.size
+    assert_equal Tools::Sample, tools.first
+    assert_includes tools.first.ancestors, RubyLLM::Tool
+
+    # Test with non-existent tool
+    tools = Tools::MetaToolService.ruby_llm_tools(['non_existent'])
+    assert_empty tools
+  end
+
+  def test_ruby_llm_tools_preserves_hooks
+    ToolMeta.clear_registry
+    before_called = false
+
+    meta_service.register_tool(
+      'Tools::SampleService',
+      before_call: ->(_args) { before_called = true }
+    )
+
+    # Fetch tool using the public API
+    tools = Tools::MetaToolService.ruby_llm_tools(['sample'])
+    assert_equal 1, tools.size
+
+    # Execute to check if hook persists
+    tools.first.new.execute(name: 'Hook Check')
+
+    assert before_called, 'Before hook should be preserved when fetching via ruby_llm_tools'
+  end
+
   private
 
   def meta_service
