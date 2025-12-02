@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_mcp_engine (0.2.0)
+    rails_mcp_engine (0.4.0)
       fast-mcp (~> 1.6)
       rails (>= 7.1, < 8.2)
       ruby_llm (~> 1.9)
@@ -197,6 +197,8 @@ GEM
       net-protocol
     nio4r (2.7.4)
     nokogiri (1.18.10-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     parallel (1.27.0)
     parser (3.3.8.0)
